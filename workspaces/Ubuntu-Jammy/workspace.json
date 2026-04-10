@@ -13,7 +13,10 @@
   "exec_config": {
     "first_launch": {
       "user": "root",
-      "cmd": "bash -c 'echo \"kasm-user  ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers'"
+      "cmd": "bash -c 'echo \"kasm-user  ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers'",
+      "cmd":"sudo apt install flatpak",
+      "cmd":"flatpak install -y flathub org.vinegarhq.Vinegar",
+      "cmd":"flatpak run org.vinegarhq.Vinegar studio"
     }
   },
   "categories": [

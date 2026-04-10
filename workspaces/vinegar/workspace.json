@@ -1,33 +1,38 @@
 {
-  "description": "Customized Ubuntu 22.04 (Jammy) desktop with Vinegar",
-  "docker_registry": "https://index.docker.io/v1/",
+  "name": "Ubuntu KDE Vinegar Studio",
+  "friendly_name": "Ubuntu KDE + Vinegar Studio",
+  "description": "Ubuntu with the KDE desktop environment.",
+  "type": "container",
+  "image": "kasmweb/ubuntu-jammy-desktop:1.15.0"
+
   "image_src": "ubuntu-jammy.png",
-  "name": "doctorwhen/kasm:ubuntu-jammy",
-  "friendly_name": "Roblox Studio",
+
+  "kasm_version": ">=1.18.0 <2.0.0",
+
   "cores": 8,
   "memory": 8192,
-  "gpu_count": 0,
-  "cpu_allocation_method": "Inherit",
-  "run_config": { "hostname": "kasm-jammy" },
+  "disk": 16386,
+
+  "uncompressed_size_mb": 4000,
+
+  "architecture": ["amd64"],
+  "categories": ["All"],
+
   "exec_config": {
-     "first_launch": {
-       "user":"root",
-       "cmd":"bash -c 'echo \"kasm-user  ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers'",
-       "cmd":"sudo apt install flatpak",
-       "cmd":"flatpak install -y flathub org.vinegarhq.Vinegar",
-       "cmd":"flatpak run org.vinegarhq.Vinegar studio"
-     }
+    "first_launch": {
+      "cmd": [
+        "/bin/bash",
+        "-c",
+        "apt update && apt install -y flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && flatpak install -y flathub org.vinegarhq.Vinegar"
+      ]
+    }
   },
-  "categories": [
-    "Desktop",
-    "Productivity"
-  ],
-  "architecture": [
-    "amd64"
-  ],
-  "compatibility": [
-    "1.15.x",
-    "1.14.x"
-  ],
-  "uncompressed_size_mb": 10600
+
+  "launch_config": {
+    "cmd": [
+      "/bin/bash",
+      "-c",
+      "flatpak run org.vinegarhq.Vinegar studio"
+    ]
+  }
 }
